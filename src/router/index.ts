@@ -10,7 +10,7 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard/workplace',
+    redirect: '/home/workplace',
     name: 'Root',
     meta: {
       hidden: true
@@ -57,10 +57,10 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
 
 export const asyncRouterMap: AppRouteRecordRaw[] = [
   {
-    path: '/dashboard',
+    path: '/home',
     component: Layout,
-    redirect: '/dashboard/workplace',
-    name: 'Dashboard',
+    redirect: '/home/workplace',
+    name: 'Home',
     meta: {
       title: t('router.dashboard'),
       icon: 'ant-design:dashboard-filled',

@@ -2,14 +2,14 @@
 import { Form, FormSchema } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
 import { PropType, reactive, watch } from 'vue'
-import { TableData } from '@/api/table/types'
+import { ClusterType } from '@/api/cluster/types'
 import { useValidator } from '@/hooks/web/useValidator'
 
 const { required } = useValidator()
 
 const props = defineProps({
   currentRow: {
-    type: Object as PropType<Nullable<TableData>>,
+    type: Object as PropType<Nullable<ClusterType>>,
     default: () => null
   },
   formSchema: {
@@ -19,12 +19,8 @@ const props = defineProps({
 })
 
 const rules = reactive({
-  title: [required()],
-  author: [required()],
-  importance: [required()],
-  pageviews: [required()],
-  display_time: [required()],
-  content: [required()]
+  code: [required()],
+  name: [required()]
 })
 
 const { formRegister, formMethods } = useForm()
