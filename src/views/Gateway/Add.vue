@@ -5,7 +5,7 @@ import { ref, unref } from 'vue'
 import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useRouter } from 'vue-router'
-import { saveTableApi } from '@/api/gateway'
+import { saveGateway } from '@/api/gateway'
 import { useEmitt } from '@/hooks/event/useEmitt'
 
 const { t } = useI18n()
@@ -20,7 +20,7 @@ const SaveAction = async () => {
   const formData = await write?.submit()
   if (formData) {
     loading.value = true
-    const res = await saveTableApi(formData)
+    const res = await saveGateway(formData)
       .catch(() => {})
       .finally(() => {
         loading.value = false

@@ -9,16 +9,16 @@ const timeout = 1000
 
 const count = 13
 
-interface ListProps {
+interface ClusterProps {
   id: number
   code: string
   name: string
-  instances?: TreeListProps[]
+  instances?: InstanceProps[]
   createTime?: Date
   updateTime?: Date
 }
 
-interface TreeListProps {
+interface InstanceProps {
   clusterCode: string
   instanceId: string
   manageHost: string
@@ -26,7 +26,7 @@ interface TreeListProps {
   createTime?: string
 }
 
-const instanceList: TreeListProps[] = []
+const instanceList: InstanceProps[] = []
 
 for (let i = 0; i < count; i++) {
   instanceList.push(
@@ -39,10 +39,10 @@ for (let i = 0; i < count; i++) {
   )
 }
 
-let idGener = 4
-let clusterList: ListProps[] = [
+let idGener = 1
+let clusterList: ClusterProps[] = [
   {
-    id: 1,
+    id: idGener++,
     code: 'product',
     name: '生产集群',
     instances: [
@@ -61,7 +61,7 @@ let clusterList: ListProps[] = [
     ]
   },
   {
-    id: 2,
+    id: idGener++,
     code: 'testing',
     name: '测试集群',
     instances: [
@@ -80,7 +80,7 @@ let clusterList: ListProps[] = [
     ]
   },
   {
-    id: 3,
+    id: idGener++,
     code: 'develop',
     name: '开发集群',
     instances: [
@@ -135,13 +135,16 @@ export default [
         if (name && item.name.indexOf(name) < 0) return false
         return true
       })
-      const pageList = mockList.filter(
-        (_, index) => index < pageSize * pageIndex && index >= pageSize * (pageIndex - 1)
-      )
+      const pageList = mockList.filter((_, index) => {
+        if (pageIndex && pageSize) {
+          return index < pageSize * pageIndex && index >= pageSize * (pageIndex - 1)
+        }
+        return true
+      })
       return {
         code: code,
         data: {
-          total: pageList.length,
+          total: mockList.length,
           list: pageList
         }
       }

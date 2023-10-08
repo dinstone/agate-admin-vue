@@ -2,17 +2,17 @@
 import { Form, FormSchema } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
 import { PropType, reactive, watch } from 'vue'
-import { RowType } from '@/api/gateway/types'
+import { GatewayType } from '@/api/gateway/types'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useValidator } from '@/hooks/web/useValidator'
-import { getClusterList } from '@/api/gateway'
+import { getClusters } from '@/api/gateway'
 
 const { t } = useI18n()
 const { required } = useValidator()
 
 const props = defineProps({
   currentRow: {
-    type: Object as PropType<Nullable<RowType>>,
+    type: Object as PropType<Nullable<GatewayType>>,
     default: () => null
   }
 })
@@ -32,7 +32,7 @@ const schema = reactive<FormSchema[]>([
       }
     },
     optionApi: async () => {
-      const res = await getClusterList()
+      const res = await getClusters()
       return res.data.list
     },
     formItemProps: {

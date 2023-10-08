@@ -4,9 +4,9 @@ import { Search } from '@/components/Search'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton } from 'element-plus'
 import { Table, TableColumn } from '@/components/Table'
-import { getTableListApi, delTableListApi, getClusterList } from '@/api/gateway'
+import { getGateways, delGateway, getClusters } from '@/api/gateway'
 import { useTable } from '@/hooks/web/useTable'
-import { RowType } from '@/api/gateway/types'
+import { GatewayType } from '@/api/gateway/types'
 import { reactive, ref, unref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useEmitt } from '@/hooks/event/useEmitt'
@@ -30,11 +30,11 @@ const clusterList = ref<any[]>([])
 const { tableRegister, tableState, tableMethods } = useTable({
   fetchDataApi: async () => {
     // init clusters
-    const cres = await getClusterList()
+    const cres = await getClusters()
     clusterList.value = cres.data.list
 
     const { currentPage, pageSize } = tableState
-    const res = await getTableListApi({
+    const res = await getGateways({
       pageIndex: unref(currentPage),
       pageSize: unref(pageSize),
       ...unref(searchParams)
@@ -45,7 +45,7 @@ const { tableRegister, tableState, tableMethods } = useTable({
     }
   },
   fetchDelApi: async () => {
-    const res = await delTableListApi(unref(ids))
+    const res = await delGateway(unref(ids))
     return !!res
   }
 })
@@ -67,16 +67,16 @@ const AddAction = () => {
 }
 
 const delLoading = ref(false)
-const DelAction = async (row: RowType | null) => {
+const DelAction = async (row: GatewayType | null) => {
   const elTableExpose = await getElTableExpose()
-  ids.value = row ? [row.id] : elTableExpose?.getSelectionRows().map((v: RowType) => v.id) || []
+  ids.value = row ? [row.id] : elTableExpose?.getSelectionRows().map((v: GatewayType) => v.id) || []
   delLoading.value = true
   await delList(unref(ids).length).finally(() => {
     delLoading.value = false
   })
 }
 
-const ShowAction = (row: RowType, type: string) => {
+const ShowAction = (row: GatewayType, type: string) => {
   push(`/gateway/${type}?id=${row.id}`)
 }
 
@@ -122,14 +122,6 @@ const tableColumns = reactive<TableColumn[]>([
   {
     field: 'remark',
     label: t('备注')
-  },
-  {
-    field: 'createTime',
-    label: t('tableDemo.displayTime')
-  },
-  {
-    field: 'updateTime',
-    label: t('更新时间')
   },
   {
     field: 'status',

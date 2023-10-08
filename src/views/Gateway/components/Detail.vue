@@ -1,6 +1,6 @@
 <script setup lang="tsx">
 import { PropType, reactive } from 'vue'
-import type { RowType } from '@/api/gateway/types'
+import type { GatewayType } from '@/api/gateway/types'
 import { Descriptions, DescriptionsSchema } from '@/components/Descriptions'
 import { useI18n } from '@/hooks/web/useI18n'
 
@@ -8,7 +8,7 @@ const { t } = useI18n()
 
 defineProps({
   currentRow: {
-    type: Object as PropType<Nullable<RowType>>,
+    type: Object as PropType<Nullable<GatewayType>>,
     default: () => null
   }
 })

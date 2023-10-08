@@ -200,9 +200,12 @@ export default [
         if (name && item.name.indexOf(name) < 0) return false
         return true
       })
-      const pageList = mockList.filter(
-        (_, index) => index < pageSize * pageIndex && index >= pageSize * (pageIndex - 1)
-      )
+      const pageList = mockList.filter((_, index) => {
+        if (pageIndex && pageSize) {
+          return index < pageSize * pageIndex && index >= pageSize * (pageIndex - 1)
+        }
+        return true
+      })
       return {
         code: code,
         data: {

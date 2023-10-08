@@ -5,8 +5,8 @@ import { ref, unref } from 'vue'
 import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useRouter, useRoute } from 'vue-router'
-import { saveTableApi, getTableDetApi } from '@/api/gateway'
-import { RowType } from '@/api/gateway/types'
+import { saveGateway, getGatewayDetail } from '@/api/gateway'
+import { GatewayType } from '@/api/gateway/types'
 import { useEmitt } from '@/hooks/event/useEmitt'
 
 const { t } = useI18n()
@@ -14,10 +14,10 @@ const { query } = useRoute()
 const { emitter } = useEmitt()
 const { push, go } = useRouter()
 
-const currentRow = ref<Nullable<RowType>>(null)
+const currentRow = ref<Nullable<GatewayType>>(null)
 
 const getTableDet = async () => {
-  const res = await getTableDetApi(query.id as string)
+  const res = await getGatewayDetail(query.id as string)
   if (res) {
     currentRow.value = res.data
   }
@@ -34,7 +34,7 @@ const SaveAction = async () => {
   const formData = await write?.submit()
   if (formData) {
     loading.value = true
-    const res = await saveTableApi(formData)
+    const res = await saveGateway(formData)
       .catch(() => {})
       .finally(() => {
         loading.value = false

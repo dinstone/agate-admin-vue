@@ -159,15 +159,31 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     path: '/apps',
     component: Layout,
     name: 'Apps',
-    meta: {},
+    redirect: '/apps/list',
+    meta: { title: t('应用'), icon: 'ep:management' },
     children: [
       {
-        path: '',
+        path: 'list',
         component: () => import('@/views/Apps/Apps.vue'),
-        name: 'AppsIndex',
+        name: 'AppsList',
         meta: {
-          title: t('应用'),
-          icon: 'ep:management'
+          title: t('应用-列表'),
+          icon: 'ep:management',
+          hidden: true,
+          canTo: true,
+          activeMenu: '/apps'
+        }
+      },
+      {
+        path: 'route/list',
+        component: () => import('@/views/Gateway/List.vue'),
+        name: 'RouteList',
+        meta: {
+          title: t('路由-列表'),
+          icon: 'ep:management',
+          hidden: true,
+          canTo: true,
+          activeMenu: '/apps'
         }
       }
     ]

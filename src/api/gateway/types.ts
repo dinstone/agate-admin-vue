@@ -11,17 +11,3 @@ export type GatewayType = {
   createTime: string
   updateTime: string
 }
-
-export type RowType = {
-  id: number
-  cluster: string
-  name: string
-  remark: string
-  status: number
-  host: string
-  port: number
-  serverConfig: string
-  clientConfig: string
-  createTime: string
-  updateTime: string
-}

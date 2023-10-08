@@ -4,17 +4,17 @@ import { ContentDetailWrap } from '@/components/ContentDetailWrap'
 import { ref } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useRouter, useRoute } from 'vue-router'
-import { getTableDetApi } from '@/api/gateway'
-import { RowType } from '@/api/gateway/types'
+import { getGatewayDetail } from '@/api/gateway'
+import { GatewayType } from '@/api/gateway/types'
 import { ElButton } from 'element-plus'
 
 const { t } = useI18n()
 const { query } = useRoute()
 const { push, go } = useRouter()
 
-const currentRow = ref<Nullable<RowType>>(null)
+const currentRow = ref<Nullable<GatewayType>>(null)
 const getDetail = async () => {
-  const res = await getTableDetApi(query.id as string)
+  const res = await getGatewayDetail(query.id as string)
   if (res) {
     currentRow.value = res.data
   }
