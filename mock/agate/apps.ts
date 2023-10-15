@@ -15,8 +15,8 @@ for (let i = 0; i < count; i++) {
   instanceList.push(
     Mock.mock({
       id: idGener++,
-      gwId: '1',
-      gwName: '生成网关',
+      gwId: '@integer(1, 13)',
+      gwName: '@ctitle',
       name: '@string(3,5)',
       domain: '@string(3,5)',
       prefix: '/*'

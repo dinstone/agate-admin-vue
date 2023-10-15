@@ -232,7 +232,7 @@ const SaveAction = async () => {
 }
 
 const GotoAction = (row: AppType) => {
-  push(`/apps/route/list?app=${row.id}`)
+  push({ name: 'RouteList', query: { app: row.id } })
 }
 </script>
 

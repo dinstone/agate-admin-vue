@@ -176,11 +176,51 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'route/list',
-        component: () => import('@/views/Gateway/List.vue'),
+        component: () => import('@/views/Route/List.vue'),
         name: 'RouteList',
         meta: {
           title: t('路由-列表'),
           icon: 'ep:management',
+          // noTagsView: true,
+          hidden: true,
+          canTo: true,
+          activeMenu: '/apps'
+        }
+      },
+      {
+        path: 'route/add',
+        component: () => import('@/views/Route/Add.vue'),
+        name: 'RouteAdd',
+        meta: {
+          title: t('路由-新增'),
+          icon: 'ep:management',
+          noTagsView: true,
+          hidden: true,
+          canTo: false,
+          activeMenu: '/apps'
+        }
+      },
+      {
+        path: 'route/edit',
+        component: () => import('@/views/Route/Edit.vue'),
+        name: 'RouteEdit',
+        meta: {
+          title: t('路由-编辑'),
+          icon: 'ep:management',
+          noTagsView: true,
+          hidden: true,
+          canTo: true,
+          activeMenu: '/apps'
+        }
+      },
+      {
+        path: 'route/detail',
+        component: () => import('@/views/Route/Detail.vue'),
+        name: 'RouteDetail',
+        meta: {
+          title: t('路由-详情'),
+          icon: 'ep:management',
+          noTagsView: true,
           hidden: true,
           canTo: true,
           activeMenu: '/apps'

@@ -1,83 +1,39 @@
 import config from '@/config/axios/config'
 import { MockMethod } from 'vite-plugin-mock'
+import { RouteType } from '@/api/route/types'
 import Mock from 'mockjs'
 
 const { code } = config
 
 const timeout = 1000
 
-const count = 23
+const count = 12
 
-interface GatewayProps {
-  id: number
-  cluster: string
-  name: string
-  remark: string
-  status: number
-  host: string
-  port: number
-  serverConfig: string
-  clientConfig: string
-  createTime: Date
-  updateTime: Date
-}
-
-let gwList: GatewayProps[] = []
-// init gateway list
+let idGener: number = 1
+let routeList: RouteType[] = []
 for (let i = 0; i < count; i++) {
-  gwList.push(
+  routeList.push(
     Mock.mock({
-      id: i + 1,
-      cluster: '@pick(["product", "testing", "develop"])',
+      id: idGener++,
+      appId: '@integer(1, 13)',
+      appName: '@string(3,5)',
       name: '@string(3,5)',
-      remark: '@cword(5)',
-      status: '@integer(1, 2)',
-      host: '',
-      port: 8888,
-      serverConfig: '',
-      clientConfig: '',
-      createTime: '@datetime(yyyy-MM-dd HH:mm:ss)',
-      updateTime: '@datetime(yyyy-MM-dd HH:mm:ss)'
+      remark: '@string(3,5)',
+      status: '@integer(1, 2)'
     })
   )
 }
 
-const clusterList = [
-  {
-    code: 'product',
-    name: '生产集群'
-  },
-  {
-    code: 'testing',
-    name: '测试集群'
-  },
-  {
-    code: 'develop',
-    name: '开发集群'
-  }
-]
-
 export default [
-  {
-    url: '/gateway/cluster',
-    method: 'get',
-    timeout,
-    response: () => {
-      return {
-        total: clusterList.length,
-        list: clusterList
-      }
-    }
-  },
   // 列表接口
   {
-    url: '/gateway/list',
+    url: '/route/list',
     method: 'get',
     timeout,
     response: ({ query }) => {
-      const { name, pageIndex, pageSize } = query
-      const mockList = gwList.filter((item) => {
-        if (name && item.name.indexOf(name) < 0) return false
+      const { appId, pageIndex, pageSize } = query
+      const mockList = routeList.filter((item) => {
+        if (appId && item.appId != appId) return false
         return true
       })
       const pageList = mockList.filter((_, index) => {
@@ -97,7 +53,7 @@ export default [
   },
   // 保存接口
   {
-    url: '/gateway/save',
+    url: '/route/save',
     method: 'post',
     timeout,
     response: ({ body }) => {
@@ -106,19 +62,19 @@ export default [
       if (!body.id) {
         body.createTime = nowTime
         // @ts-ignore
-        gwList = [
+        routeList = [
           Object.assign(body, {
-            id: gwList.length
+            id: idGener++
           })
-        ].concat(gwList)
+        ].concat(routeList)
         return {
           code: code,
           data: 'success'
         }
       } else {
-        gwList.map((item) => {
+        routeList.map((item) => {
           if (item.id == body.id) {
-            for (const key in item) {
+            for (const key in body) {
               item[key] = body[key]
             }
           }
@@ -132,11 +88,11 @@ export default [
   },
   // 详情接口
   {
-    url: '/gateway/detail',
+    url: '/route/detail',
     method: 'get',
     response: ({ query }) => {
       const { id } = query
-      for (const example of gwList) {
+      for (const example of routeList) {
         if (example.id == id) {
           return {
             code: code,
@@ -148,7 +104,7 @@ export default [
   },
   // 删除接口
   {
-    url: '/gateway/delete',
+    url: '/route/delete',
     method: 'post',
     response: ({ body }) => {
       const ids = body.ids
@@ -158,10 +114,10 @@ export default [
           message: '请选择需要删除的数据'
         }
       } else {
-        let i = gwList.length
+        let i = routeList.length
         while (i--) {
-          if (ids.indexOf(gwList[i].id) !== -1) {
-            gwList.splice(i, 1)
+          if (ids.indexOf(routeList[i].id) !== -1) {
+            routeList.splice(i, 1)
           }
         }
         return {
