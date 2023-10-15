@@ -67,7 +67,7 @@ export default {
     returnToHome: 'Return to home'
   },
   setting: {
-    projectSetting: 'Project setting',
+    projectSetting: 'Setting',
     theme: 'Theme',
     layout: 'Layout',
     systemTheme: 'System theme',

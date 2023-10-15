@@ -8,6 +8,7 @@ import { Screenfull } from '@/components/Screenfull'
 import { Breadcrumb } from '@/components/Breadcrumb'
 import { useAppStore } from '@/store/modules/app'
 import { useDesign } from '@/hooks/web/useDesign'
+import { Setting } from '@/components/Setting'
 
 const { getPrefixCls, variables } = useDesign()
 
@@ -54,6 +55,8 @@ export default defineComponent({
           </div>
         ) : undefined}
         <div class="h-full flex items-center">
+          <Setting class="custom-hover" color="var(--top-header-text-color)"></Setting>
+
           {screenfull.value ? (
             <Screenfull class="custom-hover" color="var(--top-header-text-color)"></Screenfull>
           ) : undefined}
@@ -66,6 +69,7 @@ export default defineComponent({
               color="var(--top-header-text-color)"
             ></LocaleDropdown>
           ) : undefined}
+
           <UserInfo></UserInfo>
         </div>
       </div>
