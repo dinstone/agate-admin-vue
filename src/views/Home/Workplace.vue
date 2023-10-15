@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import { useTimeAgo } from '@/hooks/web/useTimeAgo'
 import { ElRow, ElCol, ElSkeleton, ElCard, ElDivider, ElLink } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ref, reactive } from 'vue'
 import { CountTo } from '@/components/CountTo'
 import { formatTime } from '@/utils'
-import { Echart } from '@/components/Echart'
 import { EChartsOption } from 'echarts'
 import { radarOption } from './echarts-data'
-import { Highlight } from '@/components/Highlight'
 import {
   getCountApi,
   getProjectApi,
@@ -18,6 +15,13 @@ import {
 } from '@/api/dashboard/workplace'
 import type { WorkplaceTotal, Project, Dynamic, Team } from '@/api/dashboard/workplace/types'
 import { set } from 'lodash-es'
+import { useAppStore } from '@/store/modules/app'
+import { useStorage } from '@/hooks/web/useStorage'
+
+const appStore = useAppStore()
+const { getStorage } = useStorage()
+const userInfo = getStorage(appStore.getUserInfo)
+console.log(userInfo)
 
 const loading = ref(true)
 
@@ -124,7 +128,7 @@ const { t } = useI18n()
               />
               <div>
                 <div class="text-20px">
-                  {{ t('workplace.goodMorning') }}，Archer，{{ t('workplace.happyDay') }}
+                  {{ userInfo.username }}，{{ t('workplace.happyDay') }}
                 </div>
                 <div class="mt-10px text-14px text-gray-500">
                   {{ t('workplace.toady') }}，20℃ - 32℃！
@@ -205,73 +209,10 @@ const { t } = useI18n()
           </ElRow>
         </ElSkeleton>
       </ElCard>
-
-      <ElCard shadow="never" class="mt-20px">
-        <template #header>
-          <div class="flex justify-between">
-            <span>{{ t('workplace.dynamic') }}</span>
-            <ElLink type="primary" :underline="false">{{ t('workplace.more') }}</ElLink>
-          </div>
-        </template>
-        <ElSkeleton :loading="loading" animated>
-          <div v-for="(item, index) in dynamics" :key="`dynamics-${index}`">
-            <div class="flex items-center">
-              <img
-                src="@/assets/imgs/avatar.jpg"
-                alt=""
-                class="w-35px h-35px rounded-[50%] mr-20px"
-              />
-              <div>
-                <div class="text-14px">
-                  <Highlight :keys="item.keys.map((v) => t(v))">
-                    {{ t('workplace.pushCode') }}
-                  </Highlight>
-                </div>
-                <div class="mt-15px text-12px text-gray-400">
-                  {{ useTimeAgo(item.time) }}
-                </div>
-              </div>
-            </div>
-            <ElDivider />
-          </div>
-        </ElSkeleton>
-      </ElCard>
     </ElCol>
+
     <ElCol :xl="8" :lg="8" :md="24" :sm="24" :xs="24" class="mb-20px">
       <ElCard shadow="never">
-        <template #header>
-          <span>{{ t('workplace.shortcutOperation') }}</span>
-        </template>
-        <ElSkeleton :loading="loading" animated>
-          <ElRow>
-            <ElCol
-              v-for="item in 9"
-              :key="`card-${item}`"
-              :xl="12"
-              :lg="12"
-              :md="12"
-              :sm="24"
-              :xs="24"
-              class="mb-10px"
-            >
-              <ElLink type="default" :underline="false">
-                {{ t('workplace.operation') }}{{ item }}
-              </ElLink>
-            </ElCol>
-          </ElRow>
-        </ElSkeleton>
-      </ElCard>
-
-      <ElCard shadow="never" class="mt-20px">
-        <template #header>
-          <span>xx{{ t('workplace.index') }}</span>
-        </template>
-        <ElSkeleton :loading="loading" animated>
-          <Echart :options="radarOptionData" :height="400" />
-        </ElSkeleton>
-      </ElCard>
-
-      <ElCard shadow="never" class="mt-20px">
         <template #header>
           <span>{{ t('workplace.team') }}</span>
         </template>

@@ -69,7 +69,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     children: [
       {
         path: 'workplace',
-        component: () => import('@/views/Dashboard/Workplace.vue'),
+        component: () => import('@/views/Home/Workplace.vue'),
         name: 'Workplace',
         meta: {
           title: t('router.workplace'),
