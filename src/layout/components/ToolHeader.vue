@@ -55,7 +55,7 @@ export default defineComponent({
           </div>
         ) : undefined}
         <div class="h-full flex items-center">
-          <Setting class="custom-hover" color="var(--top-header-text-color)"></Setting>
+          <Setting color="var(--top-header-text-color)"></Setting>
 
           {screenfull.value ? (
             <Screenfull class="custom-hover" color="var(--top-header-text-color)"></Screenfull>

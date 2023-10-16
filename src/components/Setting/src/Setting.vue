@@ -260,7 +260,7 @@ defineProps({
           v-model="menuTheme"
           :schema="[
             '#fff',
-            '#001529',
+            '#151515',
             '#212121',
             '#273352',
             '#191b24',

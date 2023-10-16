@@ -197,7 +197,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
           icon: 'ep:management',
           noTagsView: true,
           hidden: true,
-          canTo: false,
+          canTo: true,
           activeMenu: '/apps'
         }
       },
