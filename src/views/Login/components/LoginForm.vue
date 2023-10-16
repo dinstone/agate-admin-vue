@@ -218,7 +218,7 @@ const signIn = async () => {
           setStorage(appStore.getUserInfo, res.data)
           // 是否使用动态路由
           if (appStore.getDynamicRouter) {
-            getRole()
+            getRoleRoutes()
           } else {
             await permissionStore.generateRoutes('static').catch(() => {})
             permissionStore.getAddRouters.forEach((route) => {
@@ -235,8 +235,8 @@ const signIn = async () => {
   })
 }
 
-// 获取角色信息
-const getRole = async () => {
+// 获取角色路由
+const getRoleRoutes = async () => {
   const formData = await getFormData<UserType>()
   const params = {
     roleName: formData.username

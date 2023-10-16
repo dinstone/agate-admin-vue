@@ -57,13 +57,6 @@ let stack = reactive<TechStack[]>([
 
 const projects = reactive<Project[]>([
   {
-    name: 'Github',
-    icon: 'akar-icons:github-fill',
-    message: 'workplace.introduction',
-    personal: 'Archer',
-    time: new Date()
-  },
-  {
     name: 'Vue',
     icon: 'logos:vue',
     message: 'workplace.introduction',
@@ -80,6 +73,13 @@ const projects = reactive<Project[]>([
   {
     name: 'React',
     icon: 'logos:react',
+    message: 'workplace.introduction',
+    personal: 'Archer',
+    time: new Date()
+  },
+  {
+    name: 'Github',
+    icon: 'akar-icons:github-fill',
     message: 'workplace.introduction',
     personal: 'Archer',
     time: new Date()
