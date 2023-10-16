@@ -230,7 +230,7 @@ export default {
     operation: 'Operation',
     index: 'Index',
     personal: 'Personal',
-    team: 'Team',
+    stack: 'Stack',
     quote: 'Quote',
     contribution: 'Contribution',
     hot: 'Hot',

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ElDropdown, ElDropdownMenu, ElDropdownItem, ElMessageBox } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
-import { useStorage } from '@/hooks/web/useStorage'
 import { resetRouter } from '@/router'
 import { useRouter } from 'vue-router'
 import { loginOutApi } from '@/api/login'
@@ -11,6 +10,12 @@ import LockDialog from './components/LockDialog.vue'
 import { ref, computed } from 'vue'
 import LockPage from './components/LockPage.vue'
 import { useLockStore } from '@/store/modules/lock'
+import { useAppStore } from '@/store/modules/app'
+import { useStorage } from '@/hooks/web/useStorage'
+
+const appStore = useAppStore()
+const { getStorage } = useStorage()
+const userInfo = getStorage(appStore.getUserInfo)
 
 const lockStore = useLockStore()
 
@@ -53,9 +58,9 @@ const lockScreen = () => {
   dialogVisible.value = true
 }
 
-const toDocument = () => {
-  window.open('https://element-plus-admin-doc.cn/')
-}
+// const toDocument = () => {
+//   window.open('https://element-plus-admin-doc.cn/')
+// }
 </script>
 
 <template>
@@ -66,13 +71,12 @@ const toDocument = () => {
         alt=""
         class="w-[calc(var(--logo-height)-25px)] rounded-[50%]"
       />
-      <span class="<lg:hidden text-14px pl-[5px] text-[var(--top-header-text-color)]">Archer</span>
+      <span class="<lg:hidden text-14px pl-[5px] text-[var(--top-header-text-color)]">{{
+        userInfo.username
+      }}</span>
     </div>
     <template #dropdown>
       <ElDropdownMenu>
-        <ElDropdownItem>
-          <div @click="toDocument">{{ t('common.document') }}</div>
-        </ElDropdownItem>
         <ElDropdownItem divided>
           <div @click="lockScreen">{{ t('lock.lockScreen') }}</div>
         </ElDropdownItem>

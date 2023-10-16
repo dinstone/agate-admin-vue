@@ -17,9 +17,7 @@ const title = computed(() => appStore.getTitle)
     :class="prefixCls"
     class="text-center text-[var(--el-text-color-placeholder)] bg-[var(--app-content-bg-color)] h-[var(--app-footer-height)] leading-[var(--app-footer-height)] dark:bg-[var(--el-bg-color)]"
   >
-    Copyright © 2021-2023 {{ title }}, Powered by
-    <a href="https://kailong110120130.gitee.io/vue-element-plus-admin-doc"
-      >vue-element-plus-admin</a
-    >
+    Copyright © 2022-2023 {{ title }}, Powered by
+    <a href="https://element-plus-admin-doc.cn/">vue-element-plus-admin</a>
   </div>
 </template>

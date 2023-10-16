@@ -4,112 +4,103 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { ref, reactive } from 'vue'
 import { CountTo } from '@/components/CountTo'
 import { formatTime } from '@/utils'
-import { EChartsOption } from 'echarts'
-import { radarOption } from './echarts-data'
-import {
-  getCountApi,
-  getProjectApi,
-  getDynamicApi,
-  getTeamApi,
-  getRadarApi
-} from '@/api/dashboard/workplace'
-import type { WorkplaceTotal, Project, Dynamic, Team } from '@/api/dashboard/workplace/types'
-import { set } from 'lodash-es'
+import type { Total, TechStack, Project } from '@/api/dashboard/workplace/types'
 import { useAppStore } from '@/store/modules/app'
 import { useStorage } from '@/hooks/web/useStorage'
 
 const appStore = useAppStore()
 const { getStorage } = useStorage()
 const userInfo = getStorage(appStore.getUserInfo)
-console.log(userInfo)
 
 const loading = ref(true)
 
 // 获取统计数
-let totalSate = reactive<WorkplaceTotal>({
-  project: 0,
-  access: 0,
-  todo: 0
+let total = reactive<Total>({
+  gateway: 4,
+  apps: 18,
+  route: 37
 })
 
-const getCount = async () => {
-  const res = await getCountApi().catch(() => {})
-  if (res) {
-    totalSate = Object.assign(totalSate, res.data)
+// 获取技术栈
+let stack = reactive<TechStack[]>([
+  {
+    name: 'Vue 3.3',
+    icon: 'logos:vue',
+    url: 'https://v3.vuejs.org/'
+  },
+  {
+    name: 'Vue Router',
+    icon: 'logos:react',
+    url: 'https://next.router.vuejs.org/'
+  },
+  {
+    name: 'Pinia',
+    icon: 'logos:pinia',
+    url: 'https://pinia.vuejs.org/'
+  },
+  {
+    name: 'Element-plus',
+    icon: 'ep:element-plus',
+    url: 'https://element-plus.org/'
+  },
+  {
+    name: 'Vite',
+    icon: 'vscode-icons:file-type-vite',
+    url: 'https://vitejs.dev/'
+  },
+  {
+    name: 'TypeScript',
+    icon: 'logos:webpack',
+    url: 'https://www.typescriptlang.org/'
   }
-}
+])
 
-let projects = reactive<Project[]>([])
-
-// 获取项目数
-const getProject = async () => {
-  const res = await getProjectApi().catch(() => {})
-  if (res) {
-    projects = Object.assign(projects, res.data)
+const projects = reactive<Project[]>([
+  {
+    name: 'Github',
+    icon: 'akar-icons:github-fill',
+    message: 'workplace.introduction',
+    personal: 'Archer',
+    time: new Date()
+  },
+  {
+    name: 'Vue',
+    icon: 'logos:vue',
+    message: 'workplace.introduction',
+    personal: 'Archer',
+    time: new Date()
+  },
+  {
+    name: 'Angular',
+    icon: 'logos:angular-icon',
+    message: 'workplace.introduction',
+    personal: 'Archer',
+    time: new Date()
+  },
+  {
+    name: 'React',
+    icon: 'logos:react',
+    message: 'workplace.introduction',
+    personal: 'Archer',
+    time: new Date()
+  },
+  {
+    name: 'Webpack',
+    icon: 'logos:webpack',
+    message: 'workplace.introduction',
+    personal: 'Archer',
+    time: new Date()
+  },
+  {
+    name: 'Vite',
+    icon: 'vscode-icons:file-type-vite',
+    message: 'workplace.introduction',
+    personal: 'Archer',
+    time: new Date()
   }
-}
+])
 
-// 获取动态
-let dynamics = reactive<Dynamic[]>([])
-
-const getDynamic = async () => {
-  const res = await getDynamicApi().catch(() => {})
-  if (res) {
-    dynamics = Object.assign(dynamics, res.data)
-  }
-}
-
-// 获取团队
-let team = reactive<Team[]>([])
-
-const getTeam = async () => {
-  const res = await getTeamApi().catch(() => {})
-  if (res) {
-    team = Object.assign(team, res.data)
-  }
-}
-
-// 获取指数
-let radarOptionData = reactive<EChartsOption>(radarOption) as EChartsOption
-
-const getRadar = async () => {
-  const res = await getRadarApi().catch(() => {})
-  if (res) {
-    set(
-      radarOptionData,
-      'radar.indicator',
-      res.data.map((v) => {
-        return {
-          name: t(v.name),
-          max: v.max
-        }
-      })
-    )
-    set(radarOptionData, 'series', [
-      {
-        name: `xxx${t('workplace.index')}`,
-        type: 'radar',
-        data: [
-          {
-            value: res.data.map((v) => v.personal),
-            name: t('workplace.personal')
-          },
-          {
-            value: res.data.map((v) => v.team),
-            name: t('workplace.team')
-          }
-        ]
-      }
-    ])
-  }
-}
-
-const getAllApi = async () => {
-  await Promise.all([getCount(), getProject(), getDynamic(), getTeam(), getRadar()])
-  loading.value = false
-}
-
-getAllApi()
+loading.value = false
 
 const { t } = useI18n()
 </script>
@@ -139,33 +130,23 @@ const { t } = useI18n()
           <ElCol :xl="12" :lg="12" :md="12" :sm="24" :xs="24">
             <div class="flex h-70px items-center justify-end lt-sm:mt-20px">
               <div class="px-8px text-right">
-                <div class="text-14px text-gray-400 mb-20px">{{ t('workplace.project') }}</div>
+                <div class="text-14px text-gray-400 mb-20px">{{ t('网关数') }}</div>
                 <CountTo
                   class="text-20px"
                   :start-val="0"
-                  :end-val="totalSate.project"
+                  :end-val="total.gateway"
                   :duration="2600"
                 />
               </div>
               <ElDivider direction="vertical" />
               <div class="px-8px text-right">
-                <div class="text-14px text-gray-400 mb-20px">{{ t('workplace.toDo') }}</div>
-                <CountTo
-                  class="text-20px"
-                  :start-val="0"
-                  :end-val="totalSate.todo"
-                  :duration="2600"
-                />
+                <div class="text-14px text-gray-400 mb-20px">{{ t('应用数') }}</div>
+                <CountTo class="text-20px" :start-val="0" :end-val="total.apps" :duration="2600" />
               </div>
               <ElDivider direction="vertical" border-style="dashed" />
               <div class="px-8px text-right">
-                <div class="text-14px text-gray-400 mb-20px">{{ t('workplace.access') }}</div>
-                <CountTo
-                  class="text-20px"
-                  :start-val="0"
-                  :end-val="totalSate.access"
-                  :duration="2600"
-                />
+                <div class="text-14px text-gray-400 mb-20px">{{ t('路由数') }}</div>
+                <CountTo class="text-20px" :start-val="0" :end-val="total.route" :duration="2600" />
               </div>
             </div>
           </ElCol>
@@ -179,7 +160,7 @@ const { t } = useI18n()
       <ElCard shadow="never">
         <template #header>
           <div class="flex justify-between">
-            <span>{{ t('workplace.project') }}</span>
+            <span>{{ t('待审批应用') }}</span>
             <ElLink type="primary" :underline="false">{{ t('workplace.more') }}</ElLink>
           </div>
         </template>
@@ -214,14 +195,14 @@ const { t } = useI18n()
     <ElCol :xl="8" :lg="8" :md="24" :sm="24" :xs="24" class="mb-20px">
       <ElCard shadow="never">
         <template #header>
-          <span>{{ t('workplace.team') }}</span>
+          <span>{{ t('workplace.stack') }}</span>
         </template>
         <ElSkeleton :loading="loading" animated>
           <ElRow>
-            <ElCol v-for="item in team" :key="`team-${item.name}`" :span="12" class="mb-20px">
+            <ElCol v-for="item in stack" :key="`team-${item.name}`" :span="12" class="mb-20px">
               <div class="flex items-center">
                 <Icon :icon="item.icon" class="mr-10px" />
-                <ElLink type="default" :underline="false">
+                <ElLink type="default" :underline="false" :href="item.url">
                   {{ item.name }}
                 </ElLink>
               </div>

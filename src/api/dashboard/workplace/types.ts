@@ -1,7 +1,7 @@
-export type WorkplaceTotal = {
-  project: number
-  access: number
-  todo: number
+export type Total = {
+  gateway: number
+  apps: number
+  route: number
 }
 
 export type Project = {
@@ -17,9 +17,10 @@ export type Dynamic = {
   time: Date | number | string
 }
 
-export type Team = {
+export type TechStack = {
   name: string
   icon: string
+  url?: string
 }
 
 export type RadarData = {

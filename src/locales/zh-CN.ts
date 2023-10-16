@@ -228,7 +228,7 @@ export default {
     operation: '操作',
     index: '指数',
     personal: '个人',
-    team: '团队',
+    stack: '技术栈',
     quote: '引用',
     contribution: '贡献',
     hot: '热度',

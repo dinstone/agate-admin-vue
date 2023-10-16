@@ -1,7 +1,7 @@
 import request from '@/config/axios'
-import type { WorkplaceTotal, Project, Dynamic, Team, RadarData } from './types'
+import type { Total, Project, Dynamic, TechStack, RadarData } from './types'
 
-export const getCountApi = (): Promise<IResponse<WorkplaceTotal>> => {
+export const getCountApi = (): Promise<IResponse<Total>> => {
   return request.get({ url: '/workplace/total' })
 }
 
@@ -13,7 +13,7 @@ export const getDynamicApi = (): Promise<IResponse<Dynamic[]>> => {
   return request.get({ url: '/workplace/dynamic' })
 }
 
-export const getTeamApi = (): Promise<IResponse<Team[]>> => {
+export const getTeamApi = (): Promise<IResponse<TechStack[]>> => {
   return request.get({ url: '/workplace/team' })
 }
 
