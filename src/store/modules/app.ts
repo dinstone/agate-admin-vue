@@ -68,23 +68,23 @@ export const useAppStore = defineStore('app', {
         // 主题色
         elColorPrimary: '#409eff',
         // 左侧菜单边框颜色
-        leftMenuBorderColor: 'inherit',
+        leftMenuBorderColor: '#eee',
         // 左侧菜单背景颜色
-        leftMenuBgColor: '#001529',
+        leftMenuBgColor: '#fff',
         // 左侧菜单浅色背景颜色
-        leftMenuBgLightColor: '#0f2438',
+        leftMenuBgLightColor: '#fff',
         // 左侧菜单选中背景颜色
-        leftMenuBgActiveColor: 'var(--el-color-primary)',
+        leftMenuBgActiveColor: 'RGBA(64,158,255,0.1)',
         // 左侧菜单收起选中背景颜色
-        leftMenuCollapseBgActiveColor: 'var(--el-color-primary)',
+        leftMenuCollapseBgActiveColor: 'RGBA(64,158,255,0.1)',
         // 左侧菜单字体颜色
-        leftMenuTextColor: '#bfcbd9',
+        leftMenuTextColor: '#333',
         // 左侧菜单选中字体颜色
-        leftMenuTextActiveColor: '#fff',
+        leftMenuTextActiveColor: 'var(--el-color-primary)',
         // logo字体颜色
-        logoTitleTextColor: '#fff',
+        logoTitleTextColor: 'inherit',
         // logo边框颜色
-        logoBorderColor: 'inherit',
+        logoBorderColor: '#eee',
         // 头部背景颜色
         topHeaderBgColor: '#fff',
         // 头部字体颜色

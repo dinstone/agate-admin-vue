@@ -63,7 +63,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     name: 'Home',
     meta: {
       title: t('router.dashboard'),
-      icon: 'ant-design:dashboard-filled',
+      icon: 'ep:home-filled',
       alwaysShow: true
     },
     children: [
@@ -73,6 +73,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'Workplace',
         meta: {
           title: t('router.workplace'),
+          icon: 'tdesign:work',
           noCache: true
         }
       }
@@ -90,7 +91,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'ClusterIndex',
         meta: {
           title: t('集群'),
-          icon: 'ri:function-fill'
+          icon: 'ant-design:cluster-outlined'
         }
       }
     ]
@@ -100,7 +101,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     component: Layout,
     name: 'Gateway',
     redirect: '/gateway/list',
-    meta: { title: t('网关'), icon: 'ep:management' },
+    meta: { title: t('网关'), icon: 'tdesign:router-wave' },
     children: [
       {
         path: 'list',
@@ -108,7 +109,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'GatewayList',
         meta: {
           title: t('网关-列表'),
-          icon: 'ep:management',
+          icon: 'tdesign:list',
           hidden: true,
           canTo: true,
           activeMenu: '/gateway'
@@ -160,7 +161,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     component: Layout,
     name: 'Apps',
     redirect: '/apps/list',
-    meta: { title: t('应用'), icon: 'ep:management' },
+    meta: { title: t('应用'), icon: 'tdesign:app' },
     children: [
       {
         path: 'list',
@@ -168,7 +169,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'AppsList',
         meta: {
           title: t('应用-列表'),
-          icon: 'ep:management',
+          icon: 'tdesign:list',
           hidden: true,
           canTo: true,
           activeMenu: '/apps'
@@ -180,7 +181,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'RouteList',
         meta: {
           title: t('路由-列表'),
-          icon: 'ep:management',
+          icon: 'tdesign:list',
           // noTagsView: true,
           hidden: true,
           canTo: true,
