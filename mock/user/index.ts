@@ -20,8 +20,8 @@ const List: {
     permissions: ['*.*.*']
   },
   {
-    username: 'test',
-    password: 'test',
+    username: 'agate',
+    password: '123456',
     role: 'test',
     roleId: '2',
     permissions: ['example:dialog:create', 'example:dialog:delete']

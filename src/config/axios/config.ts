@@ -87,7 +87,7 @@ const defaultResponseInterceptors = (response: AxiosResponse<any>) => {
     if (response.data.code === config.code) {
       return response.data
     } else {
-      ElMessage.error((response as any).message)
+      ElMessage.error(response.data.message)
     }
   } else {
     // API响应格式是原始类型，适配成包装类型
