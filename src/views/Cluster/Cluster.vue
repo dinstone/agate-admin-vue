@@ -21,9 +21,10 @@ const { tableRegister, tableState, tableMethods } = useTable({
       pageIndex: unref(currentPage),
       pageSize: unref(pageSize)
     })
+
     return {
-      list: res.data.list,
-      total: res.data.total
+      list: res.data,
+      total: res.data?.length
     }
   },
   fetchDelApi: async () => {
@@ -31,7 +32,7 @@ const { tableRegister, tableState, tableMethods } = useTable({
     return !!res
   }
 })
-const { loading, dataList, total, currentPage, pageSize } = tableState
+const { loading, dataList, currentPage, pageSize } = tableState
 const { getList, getElTableExpose, delList } = tableMethods
 
 const { t } = useI18n()
@@ -60,11 +61,8 @@ const crudSchemas = reactive<CrudSchema[]>([
     form: {
       component: 'Input',
       colProps: {
-        span: 24
+        span: 12
       }
-    },
-    detail: {
-      span: 24
     }
   },
   {
@@ -76,11 +74,8 @@ const crudSchemas = reactive<CrudSchema[]>([
     form: {
       component: 'Input',
       colProps: {
-        span: 24
+        span: 12
       }
-    },
-    detail: {
-      span: 24
     }
   },
   {
@@ -217,9 +212,6 @@ const SaveAction = async () => {
       :columns="allSchemas.tableColumns"
       :data="dataList"
       :loading="loading"
-      :pagination="{
-        total: total
-      }"
       @register="tableRegister"
     />
   </ContentWrap>

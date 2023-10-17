@@ -13,7 +13,7 @@ const config: AxiosConfig = {
    */
   baseUrl: {
     // 开发环境接口前缀
-    base: '',
+    base: '/api',
 
     // 打包开发环境接口前缀
     dev: '',

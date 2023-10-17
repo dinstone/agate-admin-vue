@@ -20,10 +20,6 @@ const { push } = useRouter()
 const { t } = useI18n()
 
 const searchParams = ref({})
-const setSearchParams = (params: any) => {
-  searchParams.value = params
-  getList()
-}
 
 const ids = ref<string[]>([])
 const clusterList = ref<any[]>([])
@@ -31,7 +27,7 @@ const { tableRegister, tableState, tableMethods } = useTable({
   fetchDataApi: async () => {
     // init clusters
     const cres = await getClusters()
-    clusterList.value = cres.data.list
+    clusterList.value = cres.data
 
     const { currentPage, pageSize } = tableState
     const res = await getGateways({
@@ -49,6 +45,7 @@ const { tableRegister, tableState, tableMethods } = useTable({
     return !!res
   }
 })
+
 const { loading, dataList, total, currentPage, pageSize } = tableState
 const { getList, getElTableExpose, delList } = tableMethods
 
@@ -61,6 +58,11 @@ useEmitt({
     getList()
   }
 })
+
+const setSearchParams = (params: any) => {
+  searchParams.value = params
+  getList()
+}
 
 const AddAction = () => {
   push({ name: 'GatewayAdd' })

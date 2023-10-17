@@ -14,5 +14,5 @@ export const saveApps = (data: Partial<AppType>): Promise<IResponse> => {
 }
 
 export const deleteApps = (ids: string[] | number[]): Promise<IResponse> => {
-  return request.post({ url: '/apps/delete', data: { ids } })
+  return request.delete({ url: '/apps/delete', data: ids })
 }

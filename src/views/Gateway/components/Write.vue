@@ -33,7 +33,7 @@ const schema = reactive<FormSchema[]>([
     },
     optionApi: async () => {
       const res = await getClusters()
-      return res.data.list
+      return res.data
     },
     formItemProps: {
       rules: [required()]

@@ -91,8 +91,8 @@ const formElRef = ref<FormInstance>()
         </template>
         <el-form-item label="服务类型" prop="backend.type">
           <el-radio-group v-model="formModel.backend.type">
-            <el-radio label="0">服务代理</el-radio>
-            <el-radio label="1">服务注册</el-radio>
+            <el-radio :label="0">服务代理</el-radio>
+            <el-radio :label="1">服务注册</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="注册配置" prop="backend.registry" v-if="formModel.backend.type == 1">

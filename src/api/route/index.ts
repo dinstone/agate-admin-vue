@@ -14,5 +14,5 @@ export const saveRoute = (data: Partial<RouteType>): Promise<IResponse> => {
 }
 
 export const delRoute = (ids: string[] | number[]): Promise<IResponse> => {
-  return request.post({ url: '/route/delete', data: { ids } })
+  return request.delete({ url: '/route/delete', data: ids })
 }

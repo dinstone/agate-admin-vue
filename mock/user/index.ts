@@ -55,7 +55,7 @@ export default [
   },
   // 登录接口
   {
-    url: '/user/login',
+    url: '/authen/login',
     method: 'post',
     timeout,
     response: ({ body }) => {
@@ -80,7 +80,7 @@ export default [
   },
   // 退出接口
   {
-    url: '/user/loginOut',
+    url: '/authen/logout',
     method: 'get',
     timeout,
     response: () => {

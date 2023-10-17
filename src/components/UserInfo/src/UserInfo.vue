@@ -3,7 +3,7 @@ import { ElDropdown, ElDropdownMenu, ElDropdownItem, ElMessageBox } from 'elemen
 import { useI18n } from '@/hooks/web/useI18n'
 import { resetRouter } from '@/router'
 import { useRouter } from 'vue-router'
-import { loginOutApi } from '@/api/login'
+import { logoutApi } from '@/api/login'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import LockDialog from './components/LockDialog.vue'
@@ -40,7 +40,7 @@ const loginOut = () => {
     type: 'warning'
   })
     .then(async () => {
-      const res = await loginOutApi().catch(() => {})
+      const res = await logoutApi().catch(() => {})
       if (res) {
         clear()
         tagsViewStore.delAllViews()

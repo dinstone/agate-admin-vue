@@ -212,7 +212,7 @@ const signIn = async () => {
       const formData = await getFormData<UserType>()
 
       try {
-        const res = await loginApi(formData)
+        const res = await loginApi(formData).catch(() => {})
 
         if (res) {
           setStorage(appStore.getUserInfo, res.data)

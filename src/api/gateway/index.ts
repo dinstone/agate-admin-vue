@@ -18,5 +18,5 @@ export const saveGateway = (data: Partial<GatewayType>): Promise<IResponse> => {
 }
 
 export const delGateway = (ids: string[] | number[]): Promise<IResponse> => {
-  return request.post({ url: '/gateway/delete', data: { ids } })
+  return request.delete({ url: '/gateway/delete', data: ids })
 }
