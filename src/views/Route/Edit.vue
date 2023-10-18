@@ -6,8 +6,8 @@ import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useRouter, useRoute } from 'vue-router'
 import { useEmitt } from '@/hooks/event/useEmitt'
-import { getRouteDetail, saveRoute } from '@/api/route'
-import { RouteType } from '@/api/route/types'
+import { getRouteDetail, saveRoute } from '@/api/agate/route'
+import { RouteType } from '@/api/agate/types'
 
 const { t } = useI18n()
 const { query } = useRoute()

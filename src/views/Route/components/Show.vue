@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PropType, ref, unref, watch } from 'vue'
 import { FormInstance } from 'element-plus'
-import { RouteType } from '@/api/route/types'
+import { RouteType } from '@/api/agate/types'
 
 const props = defineProps({
   model: {

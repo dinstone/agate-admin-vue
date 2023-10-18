@@ -2,10 +2,10 @@
 import { Form, FormSchema } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
 import { PropType, reactive, watch } from 'vue'
-import { GatewayType } from '@/api/gateway/types'
+import { GatewayType } from '@/api/agate/types'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useValidator } from '@/hooks/web/useValidator'
-import { getClusters } from '@/api/gateway'
+import { getClusters } from '@/api/agate/gateway'
 
 const { t } = useI18n()
 const { required } = useValidator()

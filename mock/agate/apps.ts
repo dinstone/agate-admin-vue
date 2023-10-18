@@ -1,6 +1,6 @@
 import config from '@/config/axios/config'
 import { MockMethod } from 'vite-plugin-mock'
-import { AppType } from '@/api/apps/types'
+import { AppType } from '@/api/agate/types'
 import Mock from 'mockjs'
 
 const { code } = config
@@ -105,9 +105,9 @@ export default [
   // 删除接口
   {
     url: '/apps/delete',
-    method: 'post',
+    method: 'delete',
     response: ({ body }) => {
-      const ids = body.ids
+      const ids = body
       if (!ids) {
         return {
           code: 500,

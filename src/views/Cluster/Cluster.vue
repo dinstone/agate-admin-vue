@@ -6,10 +6,10 @@ import { ElButton } from 'element-plus'
 import { ref, unref, reactive } from 'vue'
 import { Table, TableSlotDefault } from '@/components/Table'
 import { useTable } from '@/hooks/web/useTable'
-import { ClusterType, InstanceType } from '@/api/cluster/types'
+import { ClusterType, InstanceType } from '@/api/agate/types'
 import Write from './components/Write.vue'
 import Detail from './components/Detail.vue'
-import { getClusters, saveCluster, deleteCluster } from '@/api/cluster'
+import { getClusters, saveCluster, deleteCluster } from '@/api/agate/cluster'
 import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
 
 const ids = ref<string[]>([])

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PropType } from 'vue'
-import type { ClusterType } from '@/api/cluster/types'
+import type { ClusterType } from '@/api/agate/types'
 import { Descriptions, DescriptionsSchema } from '@/components/Descriptions'
 
 defineProps({

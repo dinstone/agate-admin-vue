@@ -3,7 +3,7 @@ export interface UserLoginType {
   password: string
 }
 
-export interface UserType {
+export interface AuthenUserType {
   username: string
   password: string
   role: string

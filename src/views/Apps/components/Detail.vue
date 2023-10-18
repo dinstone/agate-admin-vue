@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PropType } from 'vue'
-import type { AppType } from '@/api/apps/types'
+import type { AppType } from '@/api/agate/types'
 import { Descriptions, DescriptionsSchema } from '@/components/Descriptions'
 
 defineProps({

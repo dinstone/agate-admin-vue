@@ -8,7 +8,7 @@ import { useAppStore } from '@/store/modules/app'
 import { computed, CSSProperties, ref, unref, watch } from 'vue'
 import { nextTick } from 'vue'
 
-const modelValue = defineModel<string>()
+const modelValue = ref<string>()
 
 const appStore = useAppStore()
 

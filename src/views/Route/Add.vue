@@ -5,7 +5,7 @@ import { ref, unref } from 'vue'
 import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useRouter, useRoute } from 'vue-router'
-import { saveRoute } from '@/api/route'
+import { saveRoute } from '@/api/agate/route'
 import { useEmitt } from '@/hooks/event/useEmitt'
 
 const { t } = useI18n()

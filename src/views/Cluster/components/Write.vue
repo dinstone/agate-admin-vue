@@ -2,7 +2,7 @@
 import { Form, FormSchema } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
 import { PropType, reactive, watch } from 'vue'
-import { ClusterType } from '@/api/cluster/types'
+import { ClusterType } from '@/api/agate/types'
 import { useValidator } from '@/hooks/web/useValidator'
 
 const { required } = useValidator()

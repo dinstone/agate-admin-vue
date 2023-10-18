@@ -10,7 +10,7 @@ import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
-import { UserType } from '@/api/login/types'
+import { AuthenUserType } from '@/api/login/types'
 import { useValidator } from '@/hooks/web/useValidator'
 import { Icon } from '@/components/Icon'
 
@@ -209,7 +209,7 @@ const signIn = async () => {
   await formRef?.validate(async (isValid) => {
     if (isValid) {
       loading.value = true
-      const formData = await getFormData<UserType>()
+      const formData = await getFormData<AuthenUserType>()
 
       try {
         const res = await loginApi(formData).catch(() => {})
@@ -237,7 +237,7 @@ const signIn = async () => {
 
 // 获取角色路由
 const getRoleRoutes = async () => {
-  const formData = await getFormData<UserType>()
+  const formData = await getFormData<AuthenUserType>()
   const params = {
     roleName: formData.username
   }

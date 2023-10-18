@@ -4,7 +4,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { ref, reactive } from 'vue'
 import { CountTo } from '@/components/CountTo'
 import { formatTime } from '@/utils'
-import type { Total, TechStack, Project } from '@/api/dashboard/workplace/types'
+import type { Total, TechStack, Project } from '@/api/home/types'
 import { useAppStore } from '@/store/modules/app'
 import { useStorage } from '@/hooks/web/useStorage'
 
@@ -202,7 +202,7 @@ const { t } = useI18n()
             <ElCol v-for="item in stack" :key="`team-${item.name}`" :span="12" class="mb-20px">
               <div class="flex items-center">
                 <Icon :icon="item.icon" class="mr-10px" />
-                <ElLink type="default" :underline="false" :href="item.url">
+                <ElLink type="default" :underline="false" :href="item.url" target="_blank">
                   {{ item.name }}
                 </ElLink>
               </div>

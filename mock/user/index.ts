@@ -81,7 +81,7 @@ export default [
   // 退出接口
   {
     url: '/authen/logout',
-    method: 'get',
+    method: 'put',
     timeout,
     response: () => {
       return {

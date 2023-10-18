@@ -149,9 +149,9 @@ export default [
   // 删除接口
   {
     url: '/gateway/delete',
-    method: 'post',
+    method: 'delete',
     response: ({ body }) => {
-      const ids = body.ids
+      const ids = body
       if (!ids) {
         return {
           code: 500,

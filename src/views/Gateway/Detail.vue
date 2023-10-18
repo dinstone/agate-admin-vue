@@ -4,8 +4,8 @@ import { ContentDetailWrap } from '@/components/ContentDetailWrap'
 import { ref } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useRouter, useRoute } from 'vue-router'
-import { getGatewayDetail } from '@/api/gateway'
-import { GatewayType } from '@/api/gateway/types'
+import { getGatewayDetail } from '@/api/agate/gateway'
+import { GatewayType } from '@/api/agate/types'
 import { ElButton } from 'element-plus'
 
 const { t } = useI18n()

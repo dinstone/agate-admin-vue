@@ -11,19 +11,7 @@ const config: AxiosConfig = {
   /**
    * api请求基础路径
    */
-  baseUrl: {
-    // 开发环境接口前缀
-    base: '/api',
-
-    // 打包开发环境接口前缀
-    dev: '',
-
-    // 打包生产环境接口前缀
-    pro: '',
-
-    // 打包测试环境接口前缀
-    test: ''
-  },
+  baseUrl: '',
 
   /**
    * 接口成功返回状态码
@@ -33,7 +21,7 @@ const config: AxiosConfig = {
   /**
    * 接口请求超时时间
    */
-  timeout: 3000,
+  timeout: 1000,
 
   /**
    * 默认接口请求类型

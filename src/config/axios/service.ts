@@ -5,7 +5,7 @@ import { AxiosInstance, InternalAxiosRequestConfig, RequestConfig, AxiosResponse
 import { ElMessage } from 'element-plus'
 
 const { interceptors, baseUrl } = config
-export const PATH_URL = baseUrl[import.meta.env.VITE_API_BASE_PATH]
+export const PATH_URL = import.meta.env.VITE_API_BASE_PATH || baseUrl
 
 const { requestInterceptors, responseInterceptors } = interceptors
 

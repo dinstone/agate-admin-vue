@@ -117,10 +117,7 @@ export default [
       )
       return {
         code: code,
-        data: {
-          total: pageList.length,
-          list: pageList
-        }
+        data: pageList
       }
     }
   },
@@ -143,10 +140,7 @@ export default [
       })
       return {
         code: code,
-        data: {
-          total: mockList.length,
-          list: pageList
-        }
+        data: pageList
       }
     }
   },
@@ -204,9 +198,9 @@ export default [
   // 删除接口
   {
     url: '/cluster/delete',
-    method: 'post',
+    method: 'delete',
     response: ({ body }) => {
-      const ids = body.ids
+      const ids = body
       if (!ids) {
         return {
           code: 500,
