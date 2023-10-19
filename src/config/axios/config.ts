@@ -21,7 +21,7 @@ const config: AxiosConfig = {
   /**
    * 接口请求超时时间
    */
-  timeout: 1000,
+  timeout: 2000,
 
   /**
    * 默认接口请求类型

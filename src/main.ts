@@ -32,7 +32,7 @@ import { createApp } from 'vue'
 
 import App from './App.vue'
 
-import './permission'
+import '@/router/guard'
 
 // 创建实例
 const setupAll = async () => {

@@ -1,4 +1,4 @@
-import router from './router'
+import router from '@/router'
 import { useAppStoreWithOut } from '@/store/modules/app'
 import { useStorage } from '@/hooks/web/useStorage'
 import type { RouteRecordRaw } from 'vue-router'
