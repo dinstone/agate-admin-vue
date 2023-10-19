@@ -175,7 +175,7 @@ const removePlugin = (item: any) => {
           :key="url[index]"
           :label="'url' + index"
           :prop="'backend.urls.' + index + ''"
-          style="margin-bottom: 5px; margin-top: 5px"
+          style=" margin-top: 5px;margin-bottom: 5px"
         >
           <el-col :span="20" class="el-col-first"
             ><el-input v-model="formModel.backend.urls[index]" maxlength="50" show-word-limit
@@ -199,9 +199,12 @@ const removePlugin = (item: any) => {
           </el-select>
         </el-form-item>
         <el-form-item label="服务超时" prop="backend.timeout">
-          <el-input v-model.number="formModel.backend.timeout"
-            ><template #append>ms</template></el-input
-          >
+          <el-input-number
+            v-model="formModel.backend.timeout"
+            :min="0"
+            :max="600000"
+            controls-position="right"
+          />
         </el-form-item>
         <el-form-item label="连接配置" prop="backend.connection">
           <el-input v-model="formModel.backend.connection" type="textarea" />
@@ -229,7 +232,7 @@ const removePlugin = (item: any) => {
             message: 'domain can not be null',
             trigger: 'blur'
           }"
-          style="margin-bottom: 5px; margin-top: 5px"
+          style=" margin-top: 5px;margin-bottom: 5px"
         >
           <el-col :span="1" />
           <el-col :span="5"><el-input v-model="param.feParamName" /></el-col>
@@ -278,7 +281,7 @@ const removePlugin = (item: any) => {
             message: 'domain can not be null',
             trigger: 'blur'
           }"
-          style="margin-bottom: 5px; margin-top: 5px"
+          style=" margin-top: 5px;margin-bottom: 5px"
         >
           <el-col :span="1" />
           <el-col :span="5"><el-input v-model="plugin.plugin" /></el-col>

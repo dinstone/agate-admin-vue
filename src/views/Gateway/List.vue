@@ -4,7 +4,13 @@ import { Search } from '@/components/Search'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton } from 'element-plus'
 import { Table, TableColumn } from '@/components/Table'
-import { getGateways, delGateway, getClusters } from '@/api/agate/gateway'
+import {
+  getGateways,
+  delGateway,
+  getClusters,
+  startGateway,
+  closeGateway
+} from '@/api/agate/gateway'
 import { useTable } from '@/hooks/web/useTable'
 import { GatewayType } from '@/api/agate/types'
 import { reactive, ref, unref } from 'vue'
@@ -22,13 +28,9 @@ const { t } = useI18n()
 const searchParams = ref({})
 
 const ids = ref<string[]>([])
-const clusterList = ref<any[]>([])
+
 const { tableRegister, tableState, tableMethods } = useTable({
   fetchDataApi: async () => {
-    // init clusters
-    const cres = await getClusters()
-    clusterList.value = cres.data
-
     const { currentPage, pageSize } = tableState
     const res = await getGateways({
       pageIndex: unref(currentPage),
@@ -41,8 +43,11 @@ const { tableRegister, tableState, tableMethods } = useTable({
     }
   },
   fetchDelApi: async () => {
-    const res = await delGateway(unref(ids))
-    return !!res
+    if (ids.value.length > 0) {
+      const res = await delGateway(unref(ids))
+      return !!res
+    }
+    return true
   }
 })
 
@@ -78,15 +83,37 @@ const DelAction = async (row: GatewayType | null) => {
   })
 }
 
+const StatusAction = async (row: any) => {
+  row.sloading = true
+  if (row.status == 1) {
+    await closeGateway(row.id)
+  } else {
+    await startGateway(row.id)
+  }
+  row.sloading = false
+
+  getList()
+}
+
 const ShowAction = (row: GatewayType, type: string) => {
   push(`/gateway/${type}?id=${row.id}`)
 }
 
 const searchSchema = reactive<FormSchema[]>([
   {
-    field: 'name',
-    label: t('网关名称'),
-    component: 'Input'
+    field: 'ccode',
+    label: t('集群'),
+    component: 'Select',
+    componentProps: {
+      props: {
+        label: 'name',
+        value: 'code'
+      }
+    },
+    optionApi: async () => {
+      const res = await getClusters()
+      return res.data
+    }
   }
 ])
 const tableColumns = reactive<TableColumn[]>([
@@ -100,18 +127,8 @@ const tableColumns = reactive<TableColumn[]>([
     type: 'index'
   },
   {
-    field: 'cluster',
-    label: t('集群'),
-    slots: {
-      default: (data: any) => {
-        for (const element of clusterList.value) {
-          if (element.code == data.row.cluster) {
-            return <>{element.name}</>
-          }
-        }
-        return <>{data.row.cluster}</>
-      }
-    }
+    field: 'cname',
+    label: t('集群')
   },
   {
     field: 'name',
@@ -130,16 +147,17 @@ const tableColumns = reactive<TableColumn[]>([
     label: t('状态'),
     slots: {
       default: (data: any) => {
-        if (data.row.status === 1) {
-          return <>已停止</>
+        if (data.row.status == 0) {
+          return <el-tag type="info">已停止</el-tag>
+        } else {
+          return <el-tag type="success">已启动</el-tag>
         }
-        return <>已启动</>
       }
     }
   },
   {
     field: 'action',
-    width: '260px',
+    width: '330px',
     label: t('tableDemo.action'),
     slots: {
       default: (data: any) => {
@@ -154,6 +172,13 @@ const tableColumns = reactive<TableColumn[]>([
             <ElButton type="danger" onClick={() => DelAction(data.row)}>
               {t('exampleDemo.del')}
             </ElButton>
+            <ElButton
+              type="warning"
+              loading={data.row.sloading}
+              onClick={() => StatusAction(data.row)}
+            >
+              {data.row.status ? t('关闭') : t('启动')}
+            </ElButton>
           </>
         )
       }
@@ -165,7 +190,6 @@ const tableColumns = reactive<TableColumn[]>([
 <template>
   <ContentWrap>
     <Search :schema="searchSchema" @search="setSearchParams" @reset="setSearchParams" />
-
     <div class="mb-10px">
       <ElButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</ElButton>
       <ElButton :loading="delLoading" type="danger" @click="DelAction(null)">

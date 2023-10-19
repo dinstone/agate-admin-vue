@@ -17,7 +17,8 @@ export type InstanceType = {
 
 export type GatewayType = {
   id: number
-  cluster: string
+  ccode: string
+  cname: string
   name: string
   remark: string
   status: number

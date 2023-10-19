@@ -3,7 +3,7 @@ import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton } from 'element-plus'
 import { Table, TableColumn } from '@/components/Table'
-import { getRoutes, delRoute } from '@/api/agate/route'
+import { getRoutes, delRoute, closeRoute, startRoute } from '@/api/agate/route'
 import { getAppDetail } from '@/api/agate/apps'
 import { useTable } from '@/hooks/web/useTable'
 import { RouteType } from '@/api/agate/types'
@@ -76,6 +76,18 @@ const ShowAction = (row: RouteType, type: string) => {
   push(`/apps/route/${type}?id=${row.id}`)
 }
 
+const StatusAction = async (row: any) => {
+  row.sloading = true
+  if (row.status == 1) {
+    await closeRoute(row.id)
+  } else {
+    await startRoute(row.id)
+  }
+  row.sloading = false
+
+  getList()
+}
+
 const appSchema = reactive<DescriptionsSchema[]>([
   {
     field: 'gwName',
@@ -122,16 +134,17 @@ const tableColumns = reactive<TableColumn[]>([
     label: t('状态'),
     slots: {
       default: (data: any) => {
-        if (data.row.status === 1) {
-          return <>已停止</>
+        if (data.row.status == 0) {
+          return <el-tag type="info">已停止</el-tag>
+        } else {
+          return <el-tag type="success">已启动</el-tag>
         }
-        return <>已启动</>
       }
     }
   },
   {
     field: 'action',
-    width: '260px',
+    width: '330px',
     label: t('tableDemo.action'),
     slots: {
       default: (data: any) => {
@@ -145,6 +158,13 @@ const tableColumns = reactive<TableColumn[]>([
             </ElButton>
             <ElButton type="danger" onClick={() => DelAction(data.row)}>
               {t('exampleDemo.del')}
+            </ElButton>
+            <ElButton
+              type="warning"
+              loading={data.row.sloading}
+              onClick={() => StatusAction(data.row)}
+            >
+              {data.row.status ? t('关闭') : t('启动')}
             </ElButton>
           </>
         )

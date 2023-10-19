@@ -14,7 +14,7 @@ const { push, go } = useRouter()
 
 const currentRow = ref<Nullable<GatewayType>>(null)
 const getDetail = async () => {
-  const res = await getGatewayDetail(query.id as string)
+  const res = await getGatewayDetail(query.id as any)
   if (res) {
     currentRow.value = res.data
   }

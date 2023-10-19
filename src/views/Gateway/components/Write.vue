@@ -22,7 +22,7 @@ const { setValues, getFormData, getElFormExpose } = formMethods
 
 const schema = reactive<FormSchema[]>([
   {
-    field: 'cluster',
+    field: 'ccode',
     label: t('集群'),
     component: 'Select',
     componentProps: {
@@ -100,7 +100,7 @@ const schema = reactive<FormSchema[]>([
 ])
 
 const rules = reactive({
-  cluster: [required()],
+  ccode: [required()],
   name: [required()],
   port: [required()]
 })

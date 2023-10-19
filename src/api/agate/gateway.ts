@@ -9,8 +9,16 @@ export const getGateways = (params: any) => {
   return request.get({ url: '/gateway/list', params })
 }
 
-export const getGatewayDetail = (id: string): Promise<IResponse<GatewayType>> => {
+export const getGatewayDetail = (id: number): Promise<IResponse<GatewayType>> => {
   return request.get({ url: '/gateway/detail', params: { id } })
+}
+
+export const startGateway = (id: number): Promise<IResponse> => {
+  return request.put({ url: '/gateway/start', params: { id } })
+}
+
+export const closeGateway = (id: number): Promise<IResponse> => {
+  return request.put({ url: '/gateway/close', params: { id } })
 }
 
 export const saveGateway = (data: Partial<GatewayType>): Promise<IResponse> => {

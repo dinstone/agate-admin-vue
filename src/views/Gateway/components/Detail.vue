@@ -15,9 +15,8 @@ defineProps({
 
 const schema = reactive<DescriptionsSchema[]>([
   {
-    field: 'cluster',
-    label: t('集群'),
-    span: 24
+    field: 'cname',
+    label: t('集群')
   },
   {
     field: 'name',
@@ -26,6 +25,18 @@ const schema = reactive<DescriptionsSchema[]>([
   {
     field: 'port',
     label: t('端口')
+  },
+  {
+    field: 'status',
+    label: t('状态'),
+    slots: {
+      default: (data: any) => {
+        if (data.status === 0) {
+          return <el-tag type="info">已停止</el-tag>
+        }
+        return <el-tag type="success">已启动</el-tag>
+      }
+    }
   },
   {
     field: 'remark',
@@ -41,14 +52,6 @@ const schema = reactive<DescriptionsSchema[]>([
     field: 'clientConfig',
     label: t('客户端配置'),
     span: 24
-  },
-  {
-    field: 'createTime',
-    label: t('创建时间')
-  },
-  {
-    field: 'updateTime',
-    label: t('更新时间')
   }
 ])
 </script>
