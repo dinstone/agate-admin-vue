@@ -11,7 +11,7 @@ import { setupI18n } from '@/plugins/vueI18n'
 import { setupStore } from '@/store'
 
 // 全局组件
-import { setupGlobCom } from '@/components'
+import { setupGlobComponent } from '@/components'
 
 // 引入element-plus
 import { setupElementPlus } from '@/plugins/elementPlus'
@@ -42,7 +42,7 @@ const setupAll = async () => {
 
   setupStore(app)
 
-  setupGlobCom(app)
+  setupGlobComponent(app)
 
   setupElementPlus(app)
 

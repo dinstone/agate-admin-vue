@@ -16,7 +16,7 @@ defineOptions({
   name: 'RouteListPage'
 })
 const { query } = useRoute()
-const { push } = useRouter()
+const { push, go } = useRouter()
 const { t } = useI18n()
 
 const appInfo = ref({})
@@ -185,6 +185,9 @@ const tableColumns = reactive<TableColumn[]>([
       <ElButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</ElButton>
       <ElButton :loading="delLoading" type="danger" @click="DelAction(null)">
         {{ t('exampleDemo.del') }}
+      </ElButton>
+      <ElButton @click="go(-1)">
+        {{ t('common.back') }}
       </ElButton>
     </div>
 
