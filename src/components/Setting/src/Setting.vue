@@ -201,8 +201,8 @@ defineProps({
 </script>
 
 <template>
-  <div :class="prefixCls" @click="drawer = true">
-    <Icon icon="ep:setting" :size="18" :color="color" class="cursor-pointer" />
+  <div :class="prefixCls" @click="drawer = true" class="custom-hover">
+    <Icon icon="ep:setting" :size="18" :color="color" />
   </div>
 
   <ElDrawer v-model="drawer" direction="rtl" size="350px" :z-index="4000">
