@@ -175,7 +175,7 @@ const removePlugin = (item: any) => {
           :key="url[index]"
           :label="'url' + index"
           :prop="'backend.urls.' + index + ''"
-          style=" margin-top: 5px;margin-bottom: 5px"
+          style="margin-top: 5px; margin-bottom: 5px"
         >
           <el-col :span="20" class="el-col-first"
             ><el-input v-model="formModel.backend.urls[index]" maxlength="50" show-word-limit
@@ -232,7 +232,7 @@ const removePlugin = (item: any) => {
             message: 'domain can not be null',
             trigger: 'blur'
           }"
-          style=" margin-top: 5px;margin-bottom: 5px"
+          style="margin-top: 5px; margin-bottom: 5px"
         >
           <el-col :span="1" />
           <el-col :span="5"><el-input v-model="param.feParamName" /></el-col>
@@ -281,7 +281,7 @@ const removePlugin = (item: any) => {
             message: 'domain can not be null',
             trigger: 'blur'
           }"
-          style=" margin-top: 5px;margin-bottom: 5px"
+          style="margin-top: 5px; margin-bottom: 5px"
         >
           <el-col :span="1" />
           <el-col :span="5"><el-input v-model="plugin.plugin" /></el-col>

@@ -144,7 +144,9 @@ const tableColumns = reactive<TableColumn[]>([
   },
   {
     field: 'action',
-    width: '330px',
+    width: '310px',
+    fixed: 'right',
+    headerAlign: 'center',
     label: t('tableDemo.action'),
     slots: {
       default: (data: any) => {

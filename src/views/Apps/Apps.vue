@@ -143,6 +143,8 @@ const crudSchemas = reactive<CrudSchema[]>([
   {
     field: 'action',
     width: '260px',
+    fixed: 'right',
+    headerAlign: 'center',
     label: t('tableDemo.action'),
     search: {
       hidden: true
