@@ -4,7 +4,7 @@ import { ContentDetailWrap } from '@/components/ContentDetailWrap'
 import { ref } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useRouter, useRoute } from 'vue-router'
-import { getGatewayDetail } from '@/api/agate/gateway'
+import { getGateway } from '@/api/agate/gateway'
 import { GatewayType } from '@/api/agate/types'
 import { ElButton } from 'element-plus'
 
@@ -14,7 +14,7 @@ const { push, go } = useRouter()
 
 const currentRow = ref<Nullable<GatewayType>>(null)
 const getDetail = async () => {
-  const res = await getGatewayDetail(query.id as any)
+  const res = await getGateway(query.id as any)
   if (res) {
     currentRow.value = res.data
   }

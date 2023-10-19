@@ -5,7 +5,7 @@ import { ref, unref } from 'vue'
 import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useRouter, useRoute } from 'vue-router'
-import { saveGateway, getGatewayDetail } from '@/api/agate/gateway'
+import { saveGateway, getGateway } from '@/api/agate/gateway'
 import { GatewayType } from '@/api/agate/types'
 import { useEmitt } from '@/hooks/event/useEmitt'
 
@@ -17,7 +17,7 @@ const { push, go } = useRouter()
 const currentRow = ref<Nullable<GatewayType>>(null)
 
 const getTableDet = async () => {
-  const res = await getGatewayDetail(query.id as string)
+  const res = await getGateway(query.id as any)
   if (res) {
     currentRow.value = res.data
   }
