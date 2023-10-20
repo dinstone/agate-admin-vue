@@ -10,6 +10,12 @@ import { FormSchema } from '@/components/Form'
 import { ElButton } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useLockStore } from '@/store/modules/lock'
+import { useAppStore } from '@/store/modules/app'
+import { useStorage } from '@/hooks/web/useStorage'
+
+const appStore = useAppStore()
+const { getStorage } = useStorage()
+const userInfo = getStorage(appStore.getUserInfo)
 
 const { getPrefixCls } = useDesign()
 const prefixCls = getPrefixCls('lock-dialog')
@@ -83,7 +89,9 @@ const handleLock = async () => {
   >
     <div class="flex flex-col items-center">
       <img src="@/assets/imgs/avatar.jpg" alt="" class="w-70px h-70px rounded-[50%]" />
-      <span class="text-14px my-10px text-[var(--top-header-text-color)]">Archer</span>
+      <span class="text-14px my-10px text-[var(--top-header-text-color)]">{{
+        userInfo.username
+      }}</span>
     </div>
     <Form :is-col="false" :schema="schema" :rules="rules" @register="formRegister" />
     <template #footer>
@@ -94,7 +102,7 @@ const handleLock = async () => {
 
 <style lang="less" scoped>
 :global(.v-lock-dialog) {
-  @media (max-width: 767px) {
+  @media (width <= 767px) {
     max-width: calc(100vw - 16px);
   }
 }

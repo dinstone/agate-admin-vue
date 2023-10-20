@@ -35,7 +35,7 @@ const methodOptions = [
 const formRules = reactive<FormRules<RouteType>>({
   name: [
     { required: true, message: 'Please input Route name', trigger: 'blur' },
-    { min: 3, max: 15, message: 'Length should be 3 to 15', trigger: 'blur' }
+    { min: 3, max: 150, message: 'Length should be 3 to 150', trigger: 'blur' }
   ],
   'frontend.path': [{ required: true, message: 'Please input Route Path', trigger: 'blur' }],
   'backend.urls': [{ required: true, message: 'Please input Route Path', trigger: 'blur' }],

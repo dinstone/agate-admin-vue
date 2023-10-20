@@ -19,7 +19,7 @@ for (let i = 0; i < count; i++) {
       appName: '@string(3,5)',
       name: '@string(3,5)',
       remark: '@string(3,5)',
-      status: '@integer(1, 2)'
+      status: '@integer(0, 1)'
     })
   )
 }

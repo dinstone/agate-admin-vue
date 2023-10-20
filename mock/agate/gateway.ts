@@ -31,7 +31,7 @@ for (let i = 0; i < count; i++) {
       cluster: '@pick(["product", "testing", "develop"])',
       name: '@string(3,5)',
       remark: '@cword(5)',
-      status: '@integer(1, 2)',
+      status: '@integer(0, 1)',
       host: '',
       port: 8888,
       serverConfig: '',
