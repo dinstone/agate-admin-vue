@@ -90,19 +90,23 @@ const StatusAction = async (row: any) => {
 
 const appSchema = reactive<DescriptionsSchema[]>([
   {
-    field: 'gwName',
+    field: 'gateway.cname',
     label: t('网关')
   },
   {
-    field: 'name',
+    field: 'gateway.port',
+    label: t('端口')
+  },
+  {
+    field: 'app.name',
     label: t('应用')
   },
   {
-    field: 'domain',
+    field: 'app.domain',
     label: t('域名')
   },
   {
-    field: 'prefix',
+    field: 'app.prefix',
     label: t('前缀')
   }
 ])

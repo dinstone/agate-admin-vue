@@ -1,3 +1,5 @@
+import { useStorage } from '@/hooks/web/useStorage'
+
 import {
   AxiosConfig,
   AxiosResponse,
@@ -6,6 +8,8 @@ import {
 } from './types'
 import { ElMessage } from 'element-plus'
 import qs from 'qs'
+
+const { getStorage } = useStorage()
 
 const config: AxiosConfig = {
   /**
@@ -61,6 +65,12 @@ const defaultRequestInterceptors = (config: InternalAxiosRequestConfig) => {
     config.params = {}
     config.url = url
   }
+
+  const token = getStorage('jwt.token')
+  if (token) {
+    config.headers.setAuthorization(token)
+  }
+
   return config
 }
 

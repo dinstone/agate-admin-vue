@@ -10,7 +10,7 @@ import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
-import { AuthenUserType } from '@/api/login/types'
+import { AuthenUserType, UserLoginType } from '@/api/login/types'
 import { useValidator } from '@/hooks/web/useValidator'
 import { Icon } from '@/components/Icon'
 
@@ -209,13 +209,12 @@ const signIn = async () => {
   await formRef?.validate(async (isValid) => {
     if (isValid) {
       loading.value = true
-      const formData = await getFormData<AuthenUserType>()
-
+      const loginData = await getFormData<UserLoginType>()
       try {
-        const res = await loginApi(formData).catch(() => {})
-
+        const res = await loginApi(loginData).catch(() => {})
         if (res) {
           setStorage(appStore.getUserInfo, res.data)
+          setStorage('jwt.token', res.data.password)
           // 是否使用动态路由
           if (appStore.getDynamicRouter) {
             getRoleRoutes()
