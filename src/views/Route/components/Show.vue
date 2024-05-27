@@ -92,7 +92,7 @@ const formElRef = ref<FormInstance>()
         <el-form-item label="服务类型" prop="backend.type">
           <el-radio-group v-model="formModel.backend.type">
             <el-radio :label="0">服务代理</el-radio>
-            <el-radio :label="1">服务注册</el-radio>
+            <el-radio :label="1">服务发现</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="注册配置" prop="backend.registry" v-if="formModel.backend.type == 1">
@@ -111,7 +111,7 @@ const formElRef = ref<FormInstance>()
           :key="url[index]"
           :label="'url' + index"
           :prop="'backend.urls.' + index + ''"
-          style="margin-bottom: 5px; margin-top: 5px"
+          style="margin-top: 5px; margin-bottom: 15px"
         >
           <el-col :span="23" class="el-col-first"
             ><el-input v-model="formModel.backend.urls[index]" maxlength="50" show-word-limit
@@ -161,7 +161,7 @@ const formElRef = ref<FormInstance>()
             message: 'domain can not be null',
             trigger: 'blur'
           }"
-          style="margin-bottom: 5px; margin-top: 5px"
+          style=" margin-top: 5px;margin-bottom: 5px"
         >
           <el-col :span="1" />
           <el-col :span="5"><el-input v-model="param.feParamName" /></el-col>
@@ -190,9 +190,7 @@ const formElRef = ref<FormInstance>()
         <el-row :gutter="10">
           <el-col :span="1" />
           <el-col :span="5"><div class="el-form-item__label">插件名称</div></el-col>
-          <el-col :span="5"><div class="el-form-item__label">插件类型</div></el-col>
-          <el-col :span="5"><div class="el-form-item__label">插件序号</div></el-col>
-          <el-col :span="5"><div class="el-form-item__label">插件配置</div></el-col>
+          <el-col :span="15"><div class="el-form-item__label">插件配置</div></el-col>
           <el-col :span="3" />
         </el-row>
         <el-row
@@ -206,17 +204,11 @@ const formElRef = ref<FormInstance>()
             message: 'domain can not be null',
             trigger: 'blur'
           }"
-          style="margin-bottom: 5px; margin-top: 5px"
+          style=" margin-top: 5px;margin-bottom: 5px"
         >
           <el-col :span="1" />
           <el-col :span="5"><el-input v-model="plugin.plugin" /></el-col>
-          <el-col :span="5"
-            ><el-select v-model="plugin.type" placeholder="">
-              <el-option label="Routing" value="0" />
-              <el-option label="Failure" value="1" /> </el-select
-          ></el-col>
-          <el-col :span="5"><el-input v-model="plugin.order" /></el-col>
-          <el-col :span="5"><el-input v-model="plugin.config" /></el-col>
+          <el-col :span="15"><el-input v-model="plugin.config" /></el-col>
           <el-col :span="3" />
         </el-row>
       </el-card>
@@ -226,8 +218,8 @@ const formElRef = ref<FormInstance>()
 
 <style scoped>
 .el-col-first {
-  margin-left: 20px;
   margin-right: -20px;
+  margin-left: 20px;
   border-radius: 4px;
 }
 </style>

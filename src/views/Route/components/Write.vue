@@ -153,29 +153,29 @@ const removePlugin = (item: any) => {
         <el-form-item label="服务类型" prop="backend.type">
           <el-radio-group v-model="formModel.backend.type">
             <el-radio :label="0">服务代理</el-radio>
-            <el-radio :label="1">服务注册</el-radio>
+            <el-radio :label="1">服务发现</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="注册配置" prop="backend.registry" v-if="formModel.backend.type == 1">
           <el-input v-model="formModel.backend.registry" type="textarea" />
         </el-form-item>
 
-        <el-row :gutter="10">
-          <el-col :span="20" class="el-col-first el-form-item__label"
-            >服务地址 （Does not include path, Example: https://www.baidu.com or
+        <el-row :gutter="50" style="margin-top: 5px; margin-bottom: 10px">
+          <el-col :span="16" class="el-col-first el-form-item__label">
+            服务地址 （Does not include path, Example: https://www.baidu.com or
             http://user-service）
           </el-col>
-          <el-col :span="3"
+          <el-col :span="3" :offset="4"
             ><el-button @click.prevent="addUrl()" type="primary">添加</el-button></el-col
           >
         </el-row>
         <el-row
           v-for="(url, index) in formModel.backend.urls"
-          :gutter="10"
+          :gutter="50"
           :key="url[index]"
           :label="'url' + index"
           :prop="'backend.urls.' + index + ''"
-          style="margin-top: 5px; margin-bottom: 5px"
+          style="margin-top: 5px; margin-bottom: 15px"
         >
           <el-col :span="20" class="el-col-first"
             ><el-input v-model="formModel.backend.urls[index]" maxlength="50" show-word-limit
@@ -263,9 +263,7 @@ const removePlugin = (item: any) => {
         <el-row :gutter="10">
           <el-col :span="1" />
           <el-col :span="5"><div class="el-form-item__label">插件名称</div></el-col>
-          <el-col :span="5"><div class="el-form-item__label">插件类型</div></el-col>
-          <el-col :span="5"><div class="el-form-item__label">插件序号</div></el-col>
-          <el-col :span="5"><div class="el-form-item__label">插件配置</div></el-col>
+          <el-col :span="15"><div class="el-form-item__label">插件配置</div></el-col>
           <el-col :span="3"
             ><el-button @click.prevent="addPlugin()" type="primary">添加</el-button></el-col
           >
@@ -285,13 +283,7 @@ const removePlugin = (item: any) => {
         >
           <el-col :span="1" />
           <el-col :span="5"><el-input v-model="plugin.plugin" /></el-col>
-          <el-col :span="5"
-            ><el-select v-model="plugin.type" placeholder="">
-              <el-option label="Routing" value="0" />
-              <el-option label="Failure" value="1" /> </el-select
-          ></el-col>
-          <el-col :span="5"><el-input v-model="plugin.order" /></el-col>
-          <el-col :span="5"><el-input v-model="plugin.config" /></el-col>
+          <el-col :span="15"><el-input v-model="plugin.config" /></el-col>
           <el-col :span="3"
             ><el-button @click.prevent="removePlugin(plugin)" type="danger">删除</el-button></el-col
           >

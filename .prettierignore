@@ -5,6 +5,7 @@
 /docs/*
 /vite.config.ts
 /src/types/env.d.ts
+/src/components/*
 /docs/**/*
 /plop/**/*
 CHANGELOG
