@@ -1,4 +1,4 @@
-import request from '@/config/axios'
+import request from '@/axios'
 import type { RouteType } from './types'
 
 export const getRoutes = (params: any) => {

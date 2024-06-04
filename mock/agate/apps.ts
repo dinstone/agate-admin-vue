@@ -1,4 +1,4 @@
-import config from '@/config/axios/config'
+import config from '@/axios/config'
 import { MockMethod } from 'vite-plugin-mock'
 import { AppType } from '@/api/agate/types'
 import Mock from 'mockjs'

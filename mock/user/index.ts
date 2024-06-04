@@ -1,4 +1,4 @@
-import config from '@/config/axios/config'
+import config from '@/axios/config'
 import { MockMethod } from 'vite-plugin-mock'
 
 const { code } = config

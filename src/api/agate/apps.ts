@@ -1,4 +1,4 @@
-import request from '@/config/axios'
+import request from '@/axios'
 import type { AppType } from './types'
 
 export const getApps = (params: any) => {
